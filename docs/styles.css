@@ -81,8 +81,6 @@ footer .row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .phone .composer{margin-top:auto;border-top:1px solid var(--line);padding:10px;display:flex;gap:8px;align-items:center}
 .phone .inp{flex:1;height:34px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--muted2);font-size:12px;display:flex;align-items:center;padding:0 12px}
 .phone .send{width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,var(--a),var(--a2))}
-.phone .pet{position:relative;height:0}
-.phone .pixel{position:absolute;right:22px;bottom:52px;font-size:26px}
 .badge{display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);color:var(--muted2);margin-left:8px}
 .note{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--a);border-radius:12px;padding:14px 16px;font-size:14.5px;color:var(--muted)}
 .toc{position:sticky;top:76px;align-self:start;font-size:14.5px}

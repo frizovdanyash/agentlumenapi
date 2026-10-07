@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lumen.agent"
-    android:versionCode="2"
-    android:versionName="1.1.0">
+    android:versionCode="3"
+    android:versionName="1.2.0">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.termux.permission.RUN_COMMAND"/>
@@ -21,8 +21,6 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
         android:hardwareAccelerated="true"
-        android:usesCleartextTraffic="true"
-        android:supportsRtl="true"
         android:allowBackup="true">
 
         <activity
@@ -35,5 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="Настройки"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 </manifest>

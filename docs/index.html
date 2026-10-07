@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lumen Agent — AI-агент для Android с плагинами</title>
-<meta name="description" content="AI-агент в кармане: чат с моделями Lumen, файлы, терминал, система плагинов. Бесплатный APK.">
-<meta property="og:title" content="Lumen Agent — AI-агент для Android с плагинами">
-<meta property="og:description" content="Чат с моделями Lumen, работа с файлами, терминал и система плагинов. Свой API-ключ, всё локально.">
+<title>Lumen Agent — нативный AI-агент для Android</title>
+<meta name="description" content="AI-агент в кармане: чат с моделями Lumen, файлы, терминал, Termux. Полностью нативный интерфейс, бесплатный APK.">
+<meta property="og:title" content="Lumen Agent — нативный AI-агент для Android">
+<meta property="og:description" content="Чат с моделями Lumen, работа с файлами и настоящий терминал. Свой API-ключ, всё локально, без WebView.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,8 +18,7 @@
     <nav class="top" id="nav">
       <a href="#features">Возможности</a>
       <a href="#install">Установка</a>
-      <a href="#plugins">Плагины</a>
-      <a href="plugins.html">Документация API</a>
+      <a href="#terminal">Терминал</a>
       <a href="https://github.com/frizovdanyash/agentlumenapi/releases">Скачать APK</a>
     </nav>
     <button class="burger" id="burger">Меню</button>
@@ -28,13 +27,12 @@
 
 <section class="hero">
   <div class="wrap">
-    <div class="pill">v1.1.0 · плагины уже внутри</div>
+    <div class="pill">v1.2.0 · полностью нативный интерфейс</div>
     <h1>AI-агент, который живёт<br>в твоём телефоне</h1>
-    <p class="lead">Чат с моделями Lumen, работа с файлами, настоящий терминал и система плагинов.
-      Ключ вводишь свой, история остаётся на устройстве.</p>
+    <p class="lead">Чат с моделями Lumen, работа с файлами, настоящий терминал в Termux.
+      Только Android-виджеты — быстро, легко, без WebView. Ключ вводишь свой, история остаётся на устройстве.</p>
     <div class="cta">
-      <a class="btn primary" href="https://github.com/frizovdanyash/agentlumenapi/releases/latest/download/LumenAgent-1.1.0.apk">⬇ Скачать APK</a>
-      <a class="btn" href="plugins.html">Документация плагинов</a>
+      <a class="btn primary" href="https://github.com/frizovdanyash/agentlumenapi/releases/latest/download/LumenAgent-1.2.0.apk">⬇ Скачать APK</a>
       <a class="btn ghost" href="https://github.com/frizovdanyash/agentlumenapi">GitHub</a>
     </div>
     <p class="note" style="max-width:520px;margin:26px auto 0;text-align:left">
@@ -55,7 +53,6 @@
           <div class="tool">⏺ write_file · hello.py ✔ 1 строк · 0.02 с</div>
           <div class="tool">⏺ bash · python3 hello.py ✔ привет из агента</div>
           <div class="ans">Готово — скрипт вывел «привет из агента».</div>
-          <div class="pet"><div class="pixel">🐾</div></div>
         </div>
         <div class="composer"><div class="inp">Спроси что угодно…</div><div class="send"></div></div>
       </div>
@@ -69,7 +66,7 @@
         <div class="card"><h3>5 моделей</h3><p>Mini, Fast, Max, Ultra, Bare — переключение одним тапом в шапке.</p></div>
         <div class="card"><h3>Инструменты</h3><p>bash, чтение и запись файлов, точечные правки, листинг папок.</p></div>
         <div class="card"><h3>Терминал</h3><p>Встроенная песочница команд или настоящий bash в Termux.</p></div>
-        <div class="card"><h3>Плагины</h3><p>Расширения на JS: команды, инструменты агента, виджеты поверх интерфейса.</p></div>
+        <div class="card"><h3>Нативно и быстро</h3><p>Обычные Android-виджеты: мгновенный запуск, малый вес, без WebView.</p></div>
       </div>
     </div>
   </div>
@@ -81,17 +78,17 @@
     <h2>Всё, что нужно от агента в кармане</h2>
     <div class="grid g3" style="margin-top:26px">
       <div class="card"><div class="ico">🔑</div><h3>Свой ключ — свой аккаунт</h3>
-        <p>Ключ Lumen вводит сам пользователь. Хранится в localStorage приложения и уходит только на lumen.unionium.org.</p></div>
+        <p>Ключ Lumen вводит сам пользователь. Хранится в настройках приложения и уходит только на lumen.unionium.org.</p></div>
       <div class="card"><div class="ico">🎨</div><h3>Кастомизация</h3>
-        <p>8 акцентов, 6 фонов, светлая и тёмная тема, размер шрифта, скругления, плотность, аватары.</p></div>
+        <p>8 акцентов, светлая и тёмная тема, размер шрифта и скругления — в настройках.</p></div>
       <div class="card"><div class="ico">⌨️</div><h3>Терминал как надо</h3>
         <p>Быстрые кнопки, история по стрелкам, подсветка результата. Встроенный шелл или Termux на выбор.</p></div>
       <div class="card"><div class="ico">🧠</div><h3>Память диалога</h3>
         <p>История сохраняется целиком, контекст автоматически сжимается — агент не забывает, о чём вы говорили.</p></div>
-      <div class="card"><div class="ico">🧩</div><h3>Система плагинов</h3>
-        <p>Файл <code>.plugin</code> = манифест + код. Ставь из файла, по ссылке или вставив текст.</p></div>
+      <div class="card"><div class="ico">⚡</div><h3>Стриминг и шаги</h3>
+        <p>Ответ печатается на глазах, каждый вызов инструмента — отдельная карточка с результатом и временем.</p></div>
       <div class="card"><div class="ico">🛡️</div><h3>Контроль</h3>
-        <p>Опасные команды подсвечиваются и требуют подтверждения. Любой инструмент можно запретить.</p></div>
+        <p>Опасные команды требуют подтверждения, для Termux — системный диалог доступа.</p></div>
     </div>
   </div>
 </section>
@@ -102,12 +99,12 @@
     <h2>Три шага до первого ответа</h2>
     <div class="steps" style="margin-top:24px">
       <div class="step"><div class="n">1</div><div><b>Скачай APK</b>
-        <p><a href="https://github.com/frizovdanyash/agentlumenapi/releases/latest/download/LumenAgent-1.1.0.apk">LumenAgent-1.1.0.apk</a> — 102 КБ, Android 7.0 и выше. Разреши установку из неизвестных источников.</p></div></div>
+        <p><a href="https://github.com/frizovdanyash/agentlumenapi/releases/latest/download/LumenAgent-1.2.0.apk">LumenAgent-1.2.0.apk</a> — 97 КБ, Android 7.0 и выше. Разреши установку из неизвестных источников.</p></div></div>
       <div class="step"><div class="n">2</div><div><b>Вставь ключ Lumen</b>
         <p>Открой <a href="https://lumen.unionium.org/chat">lumen.unionium.org/chat</a> → настройки аккаунта → скопируй токен <code>lum_…</code> →
-          в приложении нажми «Сохранить и проверить».</p></div></div>
+          в приложении нажми «Проверить связь» и сохрани.</p></div></div>
       <div class="step"><div class="n">3</div><div><b>Работай</b>
-        <p>Проси создать файлы, запускать команды, искать баги. Плагин <strong>Clawd</strong> уже установлен — просто тапни по экрану.</p></div></div>
+        <p>Проси создать файлы, запускать команды, искать баги. Всё в одном чате, терминал — на соседней вкладке.</p></div></div>
     </div>
     <div class="grid g2" style="margin-top:26px">
       <div class="card"><h3>Хочу настоящий bash</h3>
@@ -116,42 +113,25 @@
 pkg install python git fastfetch</code></pre>
         <p>Затем в приложении: Настройки → Движок команд → <strong>Termux</strong> (или «Авто»).</p></div>
       <div class="card"><h3>Где лежат данные</h3>
-        <p>Диалоги, ключ, настройки и плагины — в localStorage приложения. Рабочая папка агента —
+        <p>Диалоги, ключ и настройки — внутри приложения. Рабочая папка агента —
           <code>Android/data/com.lumen.agent/files/workspace</code>. Ничего не уходит на сторонние серверы.</p></div>
     </div>
   </div>
 </section>
 
-<section id="plugins">
+<section id="terminal">
   <div class="wrap">
-    <div class="kicker">Плагины</div>
-    <h2>Расширяй как хочешь</h2>
-    <p>Плагин — это один файл <code>.plugin</code> (JSON с манифестом и кодом). Он может добавлять команды вида
-      <code>/команда</code>, инструменты для агента, элементы интерфейса, свои настройки и вклад в системный промпт.</p>
-    <div class="grid g2" style="margin-top:24px">
-      <div class="card">
-        <div class="ico">🐾</div><h3>Clawd <span class="badge">встроенный</span></h3>
-        <p>Пиксельный питомец поверх интерфейса: тапы, прыжки, глажка, перетаскивание, полёты, поедание кнопок и кучки.
-          Помнит, что ты говорил, реагирует на «привет», «люблю» и «ахаха», спит, если его не трогать.</p>
-        <p style="margin-top:12px"><a href="https://github.com/frizovdanyash/agentlumenapi/blob/main/plugins/clawd_pet.plugin">Исходник плагина →</a></p>
-      </div>
-      <div class="card">
-        <div class="ico">📝</div><h3>Быстрые заметки <span class="badge">встроенный</span></h3>
-        <p>Команды <code>/clip текст</code>, <code>/clips</code>, <code>/clip-del N</code> и инструменты
-          <code>notes_add</code>, <code>notes_list</code> — агент сам умеет записывать заметки, когда попросишь.</p>
-        <p style="margin-top:12px"><a href="https://github.com/frizovdanyash/agentlumenapi/blob/main/plugins/quick_notes.plugin">Исходник плагина →</a></p>
-      </div>
-    </div>
-    <div class="card" style="margin-top:16px">
-      <h3>Минимальный плагин</h3>
-      <pre><code>{
-  "id": "hello",
-  "name": "Привет",
-  "version": "1.0",
-  "code": "function onLoad(api) { api.command({ name: 'hi', description: 'поздороваться', run: function () { return 'Привет!'; } }); }"
-}</code></pre>
-      <p>Сохрани как <code>hello.plugin</code>, установи в приложении и введи в чате <code>/hi</code>.</p>
-      <a class="btn primary" href="plugins.html" style="margin-top:6px">Полный справочник API</a>
+    <div class="kicker">Терминал</div>
+    <h2>Шелл, к которому не надо идти</h2>
+    <p>Две вкладки: чат с агентом и терминал. Команды можно писать руками — или просить агента выполнить их за тебя,
+      глядя, как он это делает. Три движка на выбор: встроенная песочница, настоящий bash в Termux или «Авто».</p>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="card"><div class="ico">📦</div><h3>Встроенная песочница</h3>
+        <p>ls, cat, mkdir, rm, mv, cp, echo, python3 — из коробки, в папке агента, без лишних разрешений.</p></div>
+      <div class="card"><div class="ico">❯</div><h3>Termux RUN_COMMAND</h3>
+        <p>Полноценный bash, установка пакетов, реальные сценарии. Разрешение подтверждает система.</p></div>
+      <div class="card"><div class="ico">🔀</div><h3>Режим «Авто»</h3>
+        <p>Простые команды выполняются в песочнице, сложные автоматически уходят в Termux.</p></div>
     </div>
   </div>
 </section>
@@ -163,7 +143,7 @@ pkg install python git fastfetch</code></pre>
     <div class="grid g2" style="margin-top:22px">
       <div class="card"><h3>Приложение не устанавливается</h3><p>APK подписан debug-ключом: удали предыдущую версию и разреши установку из неизвестных источников.</p></div>
       <div class="card"><h3>«Сервер перегружен»</h3><p>Это ответ API Lumen на перегрузку модели. Переключи модель в шапке — mini и max обычно стабильны.</p></div>
-      <div class="card"><h3>Нужен ли интернет</h3><p>Да, для запросов к API. Всё остальное — файлы, история, плагины — работает локально.</p></div>
+      <div class="card"><h3>Нужен ли интернет</h3><p>Да, для запросов к API. Всё остальное — файлы, история, настройки — работает локально.</p></div>
       <div class="card"><h3>Сколько стоит</h3><p>Само приложение бесплатное. Платишь только Lumen за токены по своему тарифу; mini — самая дешёвая модель.</p></div>
     </div>
   </div>
@@ -175,7 +155,6 @@ pkg install python git fastfetch</code></pre>
     <div style="margin-left:auto;display:flex;gap:16px;flex-wrap:wrap">
       <a href="https://github.com/frizovdanyash/agentlumenapi">GitHub</a>
       <a href="https://github.com/frizovdanyash/agentlumenapi/releases">Releases</a>
-      <a href="plugins.html">API плагинов</a>
       <a href="https://lumen.unionium.org/docs">API Lumen</a>
     </div>
   </div>

@@ -1,32 +1,32 @@
 # ✦ Lumen Agent
 
-Android-приложение с AI-агентом: чат с моделями Lumen, работа с файлами, терминал и система плагинов.
+Android-приложение с AI-агентом: чат с моделями Lumen, работа с файлами и настоящий терминал.
+Полностью нативный интерфейс — обычные Android-виджеты, без WebView и HTML.
 
-**Создатель:** [@frizovdanya](https://t.me/frizovdanya) · **Сайт и документация:** https://frizovdanyash.github.io/agentlumenapi/
+**Создатель:** [@frizovdanya](https://t.me/frizovdanya) · **Сайт:** https://frizovdanyash.github.io/agentlumenapi/
 
 ---
 
 ## Что внутри
 
 - **Свой API-ключ.** Ключ Lumen вводит сам пользователь — берётся на [lumen.unionium.org/chat](https://lumen.unionium.org/chat)
-  и хранится в `localStorage`. Никуда, кроме API Lumen, не отправляется.
+  и хранится в настройках приложения. Никуда, кроме API Lumen, не отправляется.
 - **5 моделей Lumen:** `mini` (самая дешёвая), `fast`, `max`, `ultra`, `bare` — переключение чипом в шапке.
   Для `mini` автоматически включается текстовый протокол инструментов, для остальных — нативные function calling.
-- **Инструменты агента:** `bash`, `read_file`, `write_file`, `edit_file`, `ls` плюс инструменты плагинов.
-  Опасные команды подсвечиваются и требуют подтверждения.
-- **Терминал.** Встроенный шелл-песочница (`ls cat cd echo mkdir touch rm mv cp head tail wc grep find du`)
+- **Инструменты агента:** `bash`, `read_file`, `write_file`, `edit_file`, `ls`.
+  Опасные команды требуют подтверждения перед выполнением.
+- **Терминал.** Встроенный шелл-песочница (`ls cat cd echo mkdir touch rm mv cp head tail wc grep find du` и `python3`)
   или настоящий bash в Termux (`pkg`, `python`, `git`). Режим «Авто» сам выбирает, куда отправить команду.
-- **Плагины.** Файл `.plugin` = JSON-манифест + JS-код: команды `/команда`, инструменты для модели, виджеты
-  поверх интерфейса, свои настройки, вклад в системный промпт. В комплекте **Clawd** (пиксельный питомец)
-  и **Быстрые заметки**.
-- **Настройки кастомизации.** 8 акцентов, 6 фонов, светлая/тёмная тема, размер шрифта, скругления, плотность, аватары.
-- **Память диалога.** Вся история в localStorage, контекст автоматически сжимается — агент не забывает разговор.
+- **Нативный UI.** Чат со стримингом, карточки вызовов инструментов, вкладка терминала с быстрыми клавишами,
+  экран настроек — всё на стандартных Android-компонентах.
+- **Настройки кастомизации.** 8 акцентов, светлая/тёмная тема, размер шрифта, скругления.
+- **Память диалога.** Вся история хранится в приложении, контекст автоматически сжимается — агент не забывает разговор.
 
 ## Установка
 
 1. Скачай APK из [Releases](https://github.com/frizovdanyash/agentlumenapi/releases).
 2. Разреши установку из неизвестных источников (подпись debug-ключа).
-3. Вставь ключ `lum_…` на экране приветствия → «Сохранить и проверить».
+3. Вставь ключ `lum_…` в настройках → «Проверить связь».
 
 Требуется Android 7.0+ (minSdk 24, targetSdk 34).
 
@@ -46,60 +46,31 @@ pkg install python git fastfetch
 
 ```bash
 bash app/build.sh
-# → releases/LumenAgent-1.1.0.apk
-```
-
-Пересборка встроенных плагинов (после правки `plugins/src/*`):
-
-```bash
-python3 tools/pack_plugins.py
-```
-
-Предпросмотр интерфейса в браузере (один HTML-файл, без нативных функций):
-
-```bash
-python3 tools/build_preview.py
-# → docs/preview.html
+# → releases/LumenAgent-1.2.0.apk
 ```
 
 ## Структура
 
 ```
 app/                     Android-приложение
-├── assets/              интерфейс (WebView)
-│   ├── index.html       разметка
-│   ├── app.css          оформление и темы
-│   ├── app.js           логика: чат, инструменты, настройки, терминал
-│   ├── plugins.js       движок плагинов
-│   └── builtin-plugins.js  собранный набор встроенных плагинов
 ├── java/com/lumen/agent/
-│   ├── MainActivity.java   WebView, выбор файла плагина, кнопка «назад»
-│   ├── Bridge.java         мост JS↔Android: чат (SSE), Termux, проверка ключа
-│   └── MiniShell.java      встроенный шелл и инструменты агента
+│   ├── MainActivity.java      чат, стриминг, карточки инструментов, терминал
+│   ├── SettingsActivity.java  ключ, модель, движок команд, тема
+│   ├── Agent.java             цикл агента и инструменты
+│   ├── ChatClient.java        SSE-клиент API Lumen
+│   ├── Termux.java            запуск команд в Termux (RUN_COMMAND)
+│   ├── MiniShell.java         встроенная песочница
+│   ├── Sess.java              диалоги и сообщения
+│   ├── Markdown.java          разметка ответов
+│   ├── Theme.java / Palette.java / Views.java  оформление и виджеты
+│   └── Store.java             настройки (SharedPreferences)
 ├── res/                 иконка и тема
 ├── AndroidManifest.xml
 └── build.sh             сборка без Gradle
-plugins/                 готовые .plugin и исходники (src/)
-docs/                    сайт и документация (GitHub Pages)
-tools/                   pack_plugins.py, build_preview.py
+docs/                    сайт (GitHub Pages)
+tools/publish.sh         публикация на GitHub и в Pages
 releases/                собранные APK
 ```
-
-## Формат плагина
-
-```json
-{
-  "id": "hello",
-  "name": "Привет",
-  "version": "1.0",
-  "author": "t.me/username",
-  "icon": "👋",
-  "settings": [],
-  "code": "function onLoad(api) { api.command({ name: 'hi', description: 'поздороваться', run: function () { return 'Привет!'; } }); }"
-}
-```
-
-Полный справочник API — в [документации](https://frizovdanyash.github.io/agentlumenapi/plugins.html).
 
 ## Лицензия
 

@@ -8,7 +8,7 @@ BT="$SDK/build-tools/34.0.0"
 PLATFORM="$SDK/platforms/android-34/android.jar"
 OUT="$ROOT/build"
 REL="$ROOT/../releases"
-NAME="LumenAgent-1.1.0"
+NAME="LumenAgent-1.2.0"
 
 export JAVA_HOME="$JDK"
 export PATH="$JDK/bin:$PATH"
@@ -26,10 +26,9 @@ echo "▸ aapt2 link"
   -I "$PLATFORM" \
   --manifest "$ROOT/AndroidManifest.xml" \
   -R "$OUT/res.zip" \
-  -A "$ROOT/assets" \
   --java "$OUT/gen" \
   --min-sdk-version 24 --target-sdk-version 34 \
-  --version-code 2 --version-name 1.1.0 \
+  --version-code 3 --version-name 1.2.0 \
   --auto-add-overlay
 
 echo "▸ javac"
