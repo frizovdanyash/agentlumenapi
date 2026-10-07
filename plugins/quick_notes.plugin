@@ -1,0 +1,30 @@
+{
+  "id": "quick_notes",
+  "name": "Быстрые заметки",
+  "version": "1.0",
+  "author": "t.me/frizovdanya",
+  "description": "Заметки прямо в чате.\n\n/clip текст — сохранить заметку\n/clips — показать список\n/clip-del N — удалить заметку\n\nАгент тоже умеет работать с заметками через инструменты notes_add и notes_list — попроси «запиши в заметки: купить хлеб».",
+  "icon": "📝",
+  "tags": [
+    "productivity",
+    "example"
+  ],
+  "settings": [
+    {
+      "key": "limit",
+      "label": "Хранить заметок",
+      "type": "range",
+      "min": 5,
+      "max": 200,
+      "default": 50,
+      "hint": "старые удаляются автоматически"
+    },
+    {
+      "key": "prefix",
+      "label": "Префикс в списке",
+      "type": "text",
+      "default": "•"
+    }
+  ],
+  "code": "function onLoad(api) {\n  function notes() {\n    var list = api.store.get(\"items\", []);\n    return Array.isArray(list) ? list : [];\n  }\n  function save(list) {\n    var limit = parseInt(api.store.get(\"setting.limit\"), 10) || 50;\n    api.store.set(\"items\", list.slice(-limit));\n  }\n  function setting(key, def) {\n    var v = api.store.get(\"setting.\" + key, undefined);\n    return v === undefined ? def : v;\n  }\n\n  api.command({\n    name: \"clip\",\n    description: \"Сохранить заметку: /clip купить хлеб\",\n    run: function (arg) {\n      var text = String(arg || \"\").trim();\n      if (!text) return \"Напиши текст: `/clip купить хлеб`\";\n      var list = notes();\n      list.push({ text: text, ts: Date.now() });\n      save(list);\n      return \"Записал: **\" + text + \"** (всего \" + notes().length + \")\";\n    }\n  });\n\n  api.command({\n    name: \"clips\",\n    description: \"Показать все заметки\",\n    run: function () {\n      var list = notes();\n      if (!list.length) return \"Заметок пока нет. Добавь: `/clip текст`\";\n      var prefix = setting(\"prefix\", \"•\");\n      return list.map(function (n, i) {\n        return (i + 1) + \". \" + prefix + \" \" + n.text + \"  _(\" + new Date(n.ts).toLocaleDateString(\"ru-RU\") + \")_\";\n      }).join(\"\\n\");\n    }\n  });\n\n  api.command({\n    name: \"clip-del\",\n    description: \"Удалить заметку по номеру: /clip-del 2\",\n    run: function (arg) {\n      var idx = parseInt(String(arg || \"\").trim(), 10) - 1;\n      var list = notes();\n      if (!(idx >= 0 && idx < list.length)) return \"Нет заметки с таким номером\";\n      var removed = list.splice(idx, 1)[0];\n      save(list);\n      return \"Удалил: \" + removed.text;\n    }\n  });\n\n  api.tool({\n    name: \"notes_add\",\n    description: \"Добавить заметку пользователю в список быстрых заметок\",\n    parameters: { type: \"object\", properties: { text: { type: \"string\", description: \"текст заметки\" } }, required: [\"text\"] },\n    run: function (args) {\n      var text = String((args && args.text) || \"\").trim();\n      if (!text) return { ok: false, output: \"нужен текст заметки\" };\n      var list = notes();\n      list.push({ text: text, ts: Date.now() });\n      save(list);\n      return { ok: true, output: \"заметка добавлена, всего \" + notes().length };\n    }\n  });\n\n  api.tool({\n    name: \"notes_list\",\n    description: \"Показать все заметки пользователя\",\n    parameters: { type: \"object\", properties: {}, required: [] },\n    run: function () {\n      var list = notes();\n      if (!list.length) return { ok: true, output: \"заметок нет\" };\n      return { ok: true, output: list.map(function (n, i) { return (i + 1) + \") \" + n.text; }).join(\"\\n\") };\n    }\n  });\n\n  api.systemPrompt(\"У пользователя включён плагин заметок: добавляй заметки инструментом notes_add, а смотри их через notes_list, когда это уместно.\");\n\n  api.log(\"заметки готовы\");\n  return function cleanup() {};\n}\n"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "clawd_pet",
+  "name": "Clawd",
+  "version": "1.5",
+  "author": "t.me/frizovdanya",
+  "description": "Пиксельный питомец, который живёт поверх интерфейса.\n\nТап — ткнуть, двойной тап — прыжок, удержание — погладить, перетаскивание — перенести, резкий бросок — полёт.\n\nИногда съедает кнопки и иконки — тапни его, и он всё выплюнет обратно. Переевший Clawd оставляет кучку — тапни её, чтобы убрать.\n\nЗамечает новые сообщения и твои ответы, радуется «привет», «люблю» и «ахаха». Засыпает, если его долго не трогать.\n\nКоманды: /clawd pet | jump | sleep | wake | feed | spit | stats",
+  "icon": "🐾",
+  "tags": ["fun", "pet", "pixel"],
+  "settings": [
+    {
+      "key": "size",
+      "label": "Размер",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Маленький" },
+        { "value": 1, "label": "Средний" },
+        { "value": 2, "label": "Большой" }
+      ],
+      "default": 1
+    },
+    {
+      "key": "palette",
+      "label": "Палитра",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Claude" },
+        { "value": 1, "label": "Мятный" },
+        { "value": 2, "label": "Лавандовый" },
+        { "value": 3, "label": "Небесный" },
+        { "value": 4, "label": "Розовый" },
+        { "value": 5, "label": "Графит" }
+      ],
+      "default": 0
+    },
+    {
+      "key": "sleep",
+      "label": "Засыпает",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Через 1 минуту" },
+        { "value": 1, "label": "Через 3 минуты" },
+        { "value": 2, "label": "Через 10 минут" },
+        { "value": 3, "label": "Никогда" }
+      ],
+      "default": 1
+    },
+    { "key": "eat", "label": "Грызть интерфейс", "type": "switch", "default": true, "hint": "съедает кнопки и потом отдаёт" },
+    { "key": "poop", "label": "Оставляет кучки", "type": "switch", "default": true },
+    { "key": "talk", "label": "Разговаривает", "type": "switch", "default": true },
+    { "key": "particles", "label": "Частицы и сердечки", "type": "switch", "default": true }
+  ],
+  "code_file": "clawd_pet.js"
+}

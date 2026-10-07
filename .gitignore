@@ -1,0 +1,7 @@
+app/build/
+build/
+*.idsig
+*.apk.idsig
+debug.keystore
+.cache/
+.DS_Store
